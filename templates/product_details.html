@@ -1,0 +1,62 @@
+{% extends "layout.html" %} {% block content %}
+
+<div class="container text-center">
+  <div class="row align-items-start">
+    <div class="col">
+      <div class="collapse" id="navbarToggleExternalContent" style="background-color: #f8f9fa;">
+        <div class="p-4" style="background-color: #f8f9fa">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+        aria-controls="offcanvasRight" style="width: 100%; margin-top: 6px; padding: 9px">
+        Cart
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasRightLabel">
+            Check Your cart
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <h1>Oops! Your not logged in😥</h1>
+          <br /><br /><br />
+          <center>
+            <a href="/login" class="btn btn-primary">Login Here</a>
+          </center>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-6 offset-3">
+      <img src="{{products.photo.url}}" alt="" style="height: auto; width: 60%;">
+    </div>
+  </div>
+  <div class="row" style="background-image: url('../static/White-abstract-background-design-Graphics-29375060-1.jpg');">
+    <h1>{{products.product_name}}</h1><br><br>
+    <h5>{{products.description}}</h5><br><br>
+    <h3>Price: ৳{{products.price}}</h3>
+  </div>
+</div>
+
+<script>
+  function sort_to_low() {
+    window.location.href = '/sort_to_low1'
+  }
+  function sort_to_high() {
+
+    window.location.href = '/sort_to_high1'
+  }
+</script>
+
+{% endblock %}

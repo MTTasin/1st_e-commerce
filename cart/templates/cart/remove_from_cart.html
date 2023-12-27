@@ -1,0 +1,11 @@
+
+{% extends "../layout_user.html" %}
+{% block content %}
+   
+    {{ message }}
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Remove from Cart" style="background-color: #5bbaff; width: 100%; padding: 10px;">
+    </form>
+{% endblock %}

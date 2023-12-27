@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mera tech shop</title>
+    <link rel="icon" type="image/x-icon" href="../static/img/logo.png" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        background-image: url("/static/img/bg.jpg");
+      }
+      .hov {
+        font-size: 15px;
+      }
+      .hov:hover {
+        color: rgb(255, 255, 255);
+        background-color: aqua;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="text-center">
+      <a href="/index_user">
+        <img
+          src="../static/img/logo.png"
+          alt=""
+          style="height: 150px; width: 200px"
+      /></a>
+    </div>
+    <div class="container text-center sticky-top">
+      <div class="row">
+        <nav
+          class="navbar navbar-expand-lg bg-body-tertiary"
+          style="background-color: #5bbaff"
+        >
+          <div class="container" style="color: black">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNavDropdown"
+              aria-controls="navbarNavDropdown"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div
+              class="collapse navbar-collapse justify-content-center"
+              id="navbarNavDropdown"
+            >
+              <ul class="navbar-nav">
+                <li class="nav-item hov">
+                  <a class="nav-link" aria-current="page" href="/index_user">Home</a>
+                </li>
+                <li class="nav-item hov">
+                  <a class="nav-link" aria-current="page" href="/desktops_user">Desktop's</a>
+                </li>
+                <li class="nav-item hov">
+                  <a class="nav-link" href="/processors_user">Processors</a>
+                </li>
+                <li class="nav-item hov">
+                  <a class="nav-link" href="/motherboards_user">Motherboards</a>
+                </li>
+                <li class="nav-item hov">
+                  <a class="nav-link" href="/monitors_user">Monitors</a>
+                </li>
+                <li class="nav-item hov">
+                  <a class="nav-link" href="/ram_user">RAM</a>
+                </li>
+                <li class="nav-item hov">
+                  <a class="nav-link" href="/storage_user">Storage</a>
+                </li>
+                <li class="nav-item hov">
+                  <a class="nav-link" href="/profile_user">Profile</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-4 offset-4">
+          <h1>Update</h1>
+          <a href="/read" class="btn btn-info">+ Read</a>
+          <a href="/logout" class="btn btn-danger">Logout</a>
+          <hr />
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="photo" class="form-label">Photo</label>
+              <input
+                type="file"
+                class="form-control"
+                id="photo"
+                name="photo"
+                onchange="preview_img()"
+              />
+            </div>
+            <div class="mb-3">
+              <img src="" width="100" height="100" id="img_preview" alt="" value="{{datas.img_file}}" />
+            </div>
+            <div class="mb-3">
+              <label for="product_name" class="form-label">Product_name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="product_name"
+                name="product_name"
+                value="{{datas.product_name}}"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <input
+                type="text"
+                class="form-control"
+                id="description"
+                name="description"
+                value="{{datas.description}}"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="price" class="form-label">Price</label>
+              <input
+                type="number"
+                class="form-control"
+                id="price"
+                name="price"
+                value="{{datas.price}}"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="category" class="form-label">Category</label>
+              <input
+                type="text"
+                class="form-control"
+                id="category"
+                name="category"
+                value="{{datas.category}}"
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+      <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"
+    ></script>
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+    ></script>
+    <script>
+    function preview_img() {
+      var file = $("input[type=file]").get(0).files[0];
+      if (file) {
+        var reader = new FileReader();
+        reader.onload = function () {
+          $("#img_preview").attr("src", reader.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+    </script>
+    </body>
+    </html>

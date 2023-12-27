@@ -1,0 +1,33 @@
+{% extends "layout_user.html" %}
+{% block content %}
+
+<div>
+    <a href="{% url 'add_fixed_images' %}" class="btn btn-primary" style="margin: 10px; width: 500px;">Add new fixed image</a>
+</div>
+<div class="container">
+    <table style="width: 100%;">
+        <thead class="table-dark text-center"  >
+            <tr>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+           {% for items in fixed_images %}
+           <tr>
+               <td>
+                   <img src="/{{items.photo}}" width="400" height="300" alt="" />
+               </td>
+               <td>{{items.title}}</td>
+               <td>
+                   <a href="/delete_fixed_images/{{items.id}}" class="btn btn-danger">Delete</a>
+               </td>
+           </tr>
+           {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock content %}

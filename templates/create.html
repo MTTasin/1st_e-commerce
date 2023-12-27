@@ -1,0 +1,86 @@
+{% extends "layout_user.html" %}
+{% block content %}
+
+    <div class="container">
+      <div class="row">
+        <div class="col-4 offset-4" style="background-color: whitesmoke; width: 35%;">
+          <h1 class="text-center" style="background-color: midnightblue; color: white; padding: 1%;">Create</h1>
+
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="photo" class="form-label">Photo</label>
+              <input
+                type="file"
+                class="form-control"
+                id="photo"
+                name="photo"
+                onchange="preview_img()"
+              />
+            </div>
+            <div class="mb-3">
+              <img src="" width="100" height="100" id="img_preview" alt="" />
+            </div>
+            <div class="mb-3">
+              <label for="product_name" class="form-label">Product</label>
+              <input
+                type="text"
+                class="form-control"
+                id="product_name"
+                name="product_name"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <input
+                type="text"
+                class="form-control"
+                id="description"
+                name="description"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="price" class="form-label">Price</label>
+              <input
+                type="number"
+                class="form-control"
+                id="price"
+                name="price"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="category" class="form-label">Category</label>
+              <input
+                type="text"
+                class="form-control"
+                id="category"
+                name="category"
+              />
+              <datalist id="category">
+                <option value="processors">
+                <option value="motherboards">
+                <option value="monitors">
+                <option value="desktops">
+                <option value="ram">
+                <option value="storage">
+              </datalist>
+            </div>
+            
+
+            <button type="submit" class="btn btn-primary" style="width: 100%">
+              Save
+            </button>
+            <br><br>
+          </form>
+          <div class="text-center">
+            <a href="/read" class="btn btn-info" style="width: 30%">+ Read</a>
+            <a href="/logout" class="btn btn-danger" style="width: 30%"
+              >+ Logout</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    {% endblock content %}

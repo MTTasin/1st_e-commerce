@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Invoice Download</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+    <img src="../../../static/media/static/img/logo.png" class="img-fluid" alt=""
+        style="width: 200px; margin-top: 10px; margin-left: 45%;">
+    <hr>
+    <center>
+        <h2 style=" margin-top: 10px; margin-bottom: 10px;" class="text-center">Invoice for your orders</h2>
+    </center>
+    <hr>
+
+
+    <table>
+        <thead>
+            <tr>
+                <td colspan="3">
+                    <h3>Bill to</h3>
+                </td>
+                <td colspan="3">
+                    <h3>Bill from</h3>
+                </td>
+                <td colspan="3">
+                    <h3>Date</h3>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="3">
+                    <h5>{{ user_details.username }}</h5>
+                </td>
+                <td colspan="3">
+                    <h5>Tech shop</h5>
+                </td>
+                <td colspan="3">
+                    <h5>{{ created_at }}</h5>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <h5>{{ user_details.email }}</h5>
+                </td>
+                <td colspan="3">
+                    <h5>Chittagong, Bangladesh</h5>
+                </td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+                <td colspan="3">
+                    <h5>+880 123 456 789</h5>
+                </td>
+                <td colspan="3"></td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <br><br>
+    <hr>
+    <br><br><br>
+
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>Product</td>
+                    <td></td>
+                    <td>Quantity</td>
+                    <td>Order date</td>
+                    <td>Price</td>
+                    <td>Total</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in orders %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td colspan="2">{{ item.product_names }}</td>
+                    <td>{{ item.products_number }}</td>
+                    <td>{{ item.created_at }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.amount }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr aria-rowspan="5">
+                    <td colspan="5"></td>
+                    <td>Sub Total</td>
+                    <td>{{ total_price }}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div><center><b><i>Thank you for shopping with us</i></b></center></div>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

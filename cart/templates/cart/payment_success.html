@@ -1,0 +1,23 @@
+{% extends "../layout_user.html" %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 style="text-align: center; color: green; font-size: 50px; font-weight: bold; margin-top: 100px; margin-bottom: 100px;">Payment Success</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12" style="margin: 10px;">
+                <a href=" {% url 'index_user_url' %}" ><input type="button" value="Back to Shopping" class="btn btn-primary" style="width: 100%; padding: 10px;"></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12" style="margin: 10px;">
+                <a href=" {% url 'order_list' %}" ><input type="button" value="My Orders" class="btn btn-primary" style="width: 100%; padding: 10px;"></a>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

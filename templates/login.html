@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block content %}
+{% load static %}
+
+    <div class="container" >
+      <div class="row">
+        <div class="col-4 offset-4" style="background-color:whitesmoke; width: 35%;">
+          <h1 class="text-center">Login</h1>
+          <hr />
+          <div class="col-12">
+            <img src="{% static 'img/user-login.png' %}" style="width: 35%; margin-left: 33%;" alt="">
+          </div>
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% if messages %}
+           {% for message in messages %}
+            <p class="alert alert-warning">{{ message }}</p>
+            {% endfor %}
+            {% endif %}
+            
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="name" name="name" placeholder="name@example.com">
+              <label for="name">Username</label>
+            </div>
+            <div class="form-floating">
+              <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+              <label for="password">Password</label>
+            </div><br>
+            <button type="submit" class="btn btn-primary" style="width: 100%">
+              Log In
+            </button>
+            <center>
+              <p>Forgot your password?<a href="{% url 'forgot_password_url' %}">Click here</a></p>
+            </center>
+            <center>
+              <p>Don't have an account?<a href="/register">Create an account</a></p>
+            </center>
+            
+            {% if error %}
+            <p class="alert alert-danger">{{ error }}</p>{% endif %}
+
+          </form>
+          
+          
+
+
+        </div>
+      </div>
+    </div>
+{% endblock content %}

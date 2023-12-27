@@ -1,0 +1,104 @@
+{% extends "layout_user.html" %} {% block content %}
+
+<div class="container text-center">
+    <div class="row align-items-start">
+      <div class="col">
+        <div class="collapse" id="navbarToggleExternalContent" style="background-color: #f8f9fa;">
+          <div class="p-4" style="background-color: #f8f9fa">
+
+            <div class="row">
+              <div class="col-4">
+                <div class="container">
+                  <div class="row">
+                    <h5>Sort by availability</h5>
+                    <div class="col-12">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault0">
+                        <label class="form-check-label" for="flexRadioDefault0">
+                          Default
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          Available
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                          Not Available
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="container">
+                  <div class="row">
+                    <h5>Sort by price</h5>
+                    <div class="col-12">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault6">
+                        <label class="form-check-label" for="flexRadioDefault6">
+                          Default
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault3"
+                          onclick="sort_to_low()">
+                        <label class="form-check-label" for="flexRadioDefault3">
+                          Low to High
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault4"
+                          onclick="sort_to_high()">
+                        <label class="form-check-label" for="flexRadioDefault4">
+                          High to Low
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <nav class="navbar navbar-dark">
+          <button style="background-color: #5bbaff; width: 100%; padding: 10px;" class="navbar-toggler justify-content-center"
+            type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent"
+            aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="bi bi-funnel"> Filter</span>
+          </button>
+        </nav>
+      </div>
+      <div class="col-6">
+        <a href="{% url 'cart_detail' %}"><button class="btn btn-primary" style="width: 100%; padding: 8px; color: white; margin-top: 5px;">Cart</button></a>
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+    <div class="row">
+            <div class="col-6 offset-3">
+                <img src="{{products.photo.url}}" alt="" style="height: auto; width: 60%;"> 
+            </div>
+    </div>
+    <div class="row" style="background-image: url('../static/White-abstract-background-design-Graphics-29375060-1.jpg');">
+        <h1>{{products.product_name}}</h1><br><br>
+        <h5>{{products.description}}</h5><br><br>
+        <h3>Price: ৳{{products.price}}</h3>
+
+        <a href="/add_to_cart/{{products.id}}" class="btn btn-primary">Add to cart</a>
+    </div>
+</div>
+
+{% endblock %}

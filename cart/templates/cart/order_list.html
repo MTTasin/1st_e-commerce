@@ -1,0 +1,52 @@
+{% extends "../layout_user.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>My orders</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-striped table-hover table-bordered text-center ">
+                <thead class="table-dark text-center">
+                    <tr class="table-primary text-center fw-bold fs-5 ">
+                        <th>Order ID</th>
+                        <th>Product Name</th>
+                        <th>Product Quantity</th>
+                        <th>Order Date</th>
+                        <th>Unit price</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                    <tr>
+                        <td>{{ order.id }}</td>
+                        <td>{{ order.product_names }}</td>
+                        <td>{{ order.products_number }}</td>
+                        <td>{{ order.created_at }}</td>
+                        <td>{{ order.price }}</td>
+                        <td>{{ order.amount }}</td>
+                        <td>{{ order.order_status }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <a href="{% url 'download_invoice' %}" class=" btn btn-primary " style="width: 100%;">Download Invoice</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock content %}

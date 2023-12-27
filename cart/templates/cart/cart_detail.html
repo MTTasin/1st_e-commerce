@@ -1,0 +1,138 @@
+{% extends "../layout_user.html" %}
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+<p class="alert alert-success">{{ message }}</p>
+{% endfor %}
+{% endif %}
+
+{% if not cart_items %}
+<center><h3 class="alert alert-warning">Your cart is empty</h3></center>
+
+{% endif %}
+<table class="table text-center">
+  <thead>
+    <tr>
+      <th colspan="2">Product</th>
+      <th>Quantity</th>
+      <th></th>
+      <th>Unit Price</th>
+      <th>Amount</th>
+      <th></th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in cart_items %}
+    <tr>
+      <td>{{ item.product }}</td>
+      <td><a href="{% url 'decrease_quantity' item.id %}" class="btn btn-primary">-</a></td>
+      <td id="quantity"><p id="product_quantity">{{ item.quantity }}</p></td>
+      <td><a
+        href="{% url 'increase_quantity' item.id %}" class="btn btn-primary">+</a></td>
+      <td id="unit_price"><p id="product_price">{{ item.price }}</p></td>
+      <td><p id="product_price_amount">{{ item.amount }}</p></td>
+      <td></td>
+      <td><a href="{% url 'remove_from_cart' item.id %}" class="btn btn-danger">Remove</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+
+  <tfoot>
+    <tr>
+      <td colspan="3"></td>
+      <td></td>
+      <td><b>Total:</b></td>
+      <td colspan="2">{{ total_price }} BDT</td>
+      <td colspan="3"></td>
+    </tr>
+  </tfoot>
+</table>
+
+
+<p class="d-inline-flex gap-1" style="width: 100%;">
+  <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+    aria-controls="collapseExample" style="width: 100%;">
+    Checkout
+  </a>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1>Checkout for {{user.username}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h5>Order Summary</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <form method="post">
+            {% csrf_token %}
+            <div>
+              <h5>
+                <product class="count">Total Products:{{ product_total_quantity }}</product>
+              </h5>
+            </div>
+            <div>
+              <h5>Amount to be paid:{{ total_price }}</h5>
+            </div>
+            <div>
+              <h5>Billing Address</h5>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="name" name="name" placeholder="" required>
+              <label for="name">Name</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="address" name="address" placeholder="" required>
+              <label for="address">Address</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="city" name="city" placeholder="" required>
+              <label for="city">City</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="state" name="state" placeholder="" required>
+              <label for="state">State</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="pincode" name="pincode" placeholder="" required>
+              <label for="pincode">Pincode</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="country" name="country" placeholder="" required>
+              <label for="country">Country</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="phone" name="phone" placeholder="" required>
+              <label for="phone">Phone</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="card" name="card" placeholder="" required>
+              <label for="card">Card Number</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="cvv" name="cvv" placeholder="" required>
+              <label for="cvv">CVV</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="expiry" name="expiry" placeholder="" required>
+              <label for="expiry">Expiry</label>
+            </div>
+            <div>
+              <a href="/confirm_to_pay"><input class="btn btn-success" style="width: 100%; padding: 8px; color: white;" value="Checkout"></a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

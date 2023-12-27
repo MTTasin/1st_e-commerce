@@ -1,0 +1,127 @@
+{% extends "layout_user.html" %}
+{% block content %}
+
+
+
+
+
+<div class="container" style="position: relative;">
+    <div class="row" style="position: relative; margin-top: 10px;">
+
+        <div class="card" style="width: 18rem; background-color: #007bff; margin: auto; margin-bottom: 10px;">
+            <a href="{% url 'read_url' %}">
+                <div class="card-body" style="text-align: center; font-size: 20px; font-weight: bold; color: white;">
+                    <h5 class="card-title">Total Products</h5>
+                    <p class="card-text">{{ total_products }}</p>
+                </div>
+            </a>
+        </div>
+
+
+        <div class="card" style="width: 18rem; background-color: #007bff; margin: auto; margin-bottom: 10px;">
+            <a href="{% url 'manage_orders' %}">
+            <div class="card-body" style="text-align: center; font-size: 20px; font-weight: bold; color: white;">
+                <h5 class="card-title">Total Orders</h5>
+                <p class="card-text">{{ total_orders }}</p>
+            </div>
+        </a>
+        </div>
+
+
+        <div class="card" style="width: 18rem; background-color: #007bff; margin: auto; margin-bottom: 10px;">
+            <div class="card-body" style="text-align: center; font-size: 20px; font-weight: bold; color: white;">
+                <h5 class="card-title">Total Sales</h5>
+                <p class="card-text">{{ total_sales }}</p>
+            </div>
+        </div>
+
+
+        <div class="card" style="width: 18rem; background-color: #007bff; margin: auto; margin-bottom: 10px;">
+            <a href="{% url 'manage_users' %}">
+            <div class="card-body" style="text-align: center; font-size: 20px; font-weight: bold; color: white;">
+                <h5 class="card-title">Total Users</h5>
+                <p class="card-text">{{ total_users }}</p>
+            </div>
+            </a>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Recent Orders</h5>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Ordered by</th>
+                                <th scope="col">Product</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                            <tr>
+                                <th scope="row">{{order.id}}</th>
+                                <td>{{order.user}}</td>
+                                <td>{{order.product_names}}</td>
+                                <td>{{order.products_number}}</td>
+                                <td>{{order.total}}</td>
+                                <td>{{order.created_at}}</td>
+                                <td>{{order.order_status}}</td>
+                                <td>
+                                    <a href="{% url 'manage_orders_item' order.id %}" class="btn btn-success">Update</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Contact Requests</h5>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Message</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for contact in contacts %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{contact.name}}</td>
+                                <td>{{contact.email}}</td>
+                                <td>{{contact.message}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div>
+            <a href="/logout" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock content %}

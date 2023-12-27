@@ -1,0 +1,48 @@
+{% extends "layout_user.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <center><h1 class="text-center">Update Carousel</h1></center>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4 offset-4">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="photo" class="form-label">Photo</label>
+                    <input
+                        type="file"
+                        class="form-control"
+                        id="photo"
+                        name="photo"
+                        onchange="preview_img()"
+                    />
+                </div>
+                <div class="mb-3">
+                    <img src="{{ datas.photo.url }}" width="100" height="100" id="img_preview" alt="" />
+                </div>
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="title"
+                        name="title"
+                        placeholder="{{ datas.title }}"
+                    />
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="{% url 'carousel_page' %}" class="btn btn-danger">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

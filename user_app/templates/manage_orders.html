@@ -1,0 +1,39 @@
+{% extends "layout_user.html" %}
+{% block content %}
+
+<div class="container">
+    <table class="table table-hover table-striped table-dark table-bordered text-center mt-5">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Ordered by</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Date</th>
+                <th>Order Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{order.id}}</td>
+                <td>{{order.user}}</td>
+                <td>{{order.product_names}}</td>
+                <td>{{order.products_number}}</td>
+                <td>{{order.total}}</td>
+                <td>{{order.created_at}}</td>
+                <td>{{order.order_status}}</td>
+                <td>
+                    <a href="{% url 'manage_orders_item' order.id %}" class="btn btn-success">Update</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+{% endblock content %}

@@ -1,0 +1,96 @@
+{% extends "layout_user.html" %}
+{% block content %}
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h1 class="text-center" style="background-color: midnightblue; color: white; padding: 1%;">Read</h1>
+
+          <div class="text-center">
+            <a href="/create" class="btn btn-info" style="width: 40%"
+              >+ Create</a
+            >
+            <a href="/logout" class="btn btn-danger" style="width: 40%"
+              >+ Logout</a
+            >
+          </div>
+          <!--product count-->
+          <div class="text-center">
+            <h3>
+              Total Products
+              <span
+                class="badge bg-secondary"
+                style="background-color: #5bbaff"
+                >{{datas.count}}</span
+              >
+            </h3>
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Photo</th>
+
+                <th scope="col">product</th>
+                <th scope="col">description</th>
+                <th scope="col">price</th>
+                <th scope="col">category</th>
+
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in datas %}
+              <tr>
+                <th scope="row">{{row.id}}</th>
+                <td>
+                  <img
+                    src="/{{row.photo}}"
+                    width="50"
+                    height="50"
+                    alt=""
+                  />
+                </td>
+
+                <td>{{row.product_name}}</td>
+                <td>{{row.description}}</td>
+                <td>{{row.price}}</td>
+                <td>{{row.category}}</td>
+
+                <td>
+                  <a href="/update/{{row.id}}" class="btn btn-warning">Edit</a>
+                </td>
+                <td>
+                  <a href="/delete/{{row.id}}" class="btn btn-danger">Delete</a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+    ></script>
+    <script>
+    function preview_img() {
+      var file = $("input[type=file]").get(0).files[0];
+      if (file) {
+        var reader = new FileReader();
+        reader.onload = function () {
+          $("#img_preview").attr("src", reader.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+    </script>
+  
+
+{% endblock %}

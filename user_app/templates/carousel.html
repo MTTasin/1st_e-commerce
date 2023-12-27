@@ -1,0 +1,57 @@
+{% extends "layout_user.html" %}
+
+{% block content %}
+
+<div>
+    <center><a href="/carousel_create" class="btn btn-primary" style="width: 500px;">Add new Carousel</a></center>
+</div>
+<div class="container">
+    <table style="width: 100%;">
+        <thead>
+            <tr>
+                <th colspan="2">Photo</th>
+                <th>Title</th>
+                <th colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% for items in carousels %}
+            <tr>
+                <td colspan="2">
+                    <img src="/{{items.photo}}" width="400" height="300" alt="" />
+                </td>
+                <td colspan="2">{{items.title}}</td>
+                <td>
+                    <a href="/carousel_update/{{items.id}}" class="btn btn-warning">Edit</a>
+                </td>
+                <td>
+                    <a href="/carousel_delete/{{items.id}}" class="btn btn-danger">Delete</a>
+                </td>
+                
+            </tr>
+            {% endfor %}
+    </table>
+</div>
+
+
+
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+    ></script>
+    <script>
+    function preview_img() {
+      var file = $("input[type=file]").get(0).files[0];
+      if (file) {
+        var reader = new FileReader();
+        reader.onload = function () {
+          $("#img_preview").attr("src", reader.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+    </script>
+{% endblock content %}

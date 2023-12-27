@@ -1,0 +1,38 @@
+{% extends "../layout_user.html" %}
+{% block content %}
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <center><h1>Confirm To Pay</h1></center>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <center><h5>Order Summary</h5></center>
+            </div>
+        </div>
+        <div class="row">
+            <h5>
+                <center><product class="count">Total Products:{{ product_total_quantity }}</product></center>
+            </h5>
+        </div>
+        <div class="row">
+            <h5>
+                <center><product class="count">Total Price:{{ total_price }}</product></center>
+            </h5>
+        </div>
+        <div class="row">
+            <h5>
+                <center><product class="count">Amount to be paid:{{ total_price }}</product></center>
+            </h5>
+        </div>
+        <div class="row">
+            <a href="/order" class="btn btn-primary">Confirm To Pay</a>
+        </div>
+    </div>
+
+
+
+{% endblock content %}
