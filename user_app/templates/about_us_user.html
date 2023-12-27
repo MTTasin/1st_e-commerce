@@ -5,19 +5,20 @@
 
 <h1 class="text-center">About us</h1>
 <div class="row">
-    <div class="col-6 mt-5">
-        <img src="../static/img/about/AdobeStock.jpg" style="width: 90%; height: 80%; margin-left: 8%; border-radius: 4%;" alt="">
+    <div class="col-md-5" style="position: relative; margin-left: auto; margin-right: auto;">
+        <img src="../static/img/about/AdobeStock.jpg" style="border-radius: 4%;" alt="" class="img-fluid">
     </div>
-    <div class="col-6" style="background-color: white; width: 50%; height: 100%; padding: 5%; margin-top: 4%;">
+    <div class="col-md-5 offset-1 text-center" style="background-color: whitesmoke; width: 50%; height: 100%; padding: 5%; margin-top: 4%; margin-left: auto; margin-right: auto; position: relative;">
         <p>
             Computers and laptops / notebooks have become a part of our life. Life without a computer is next to impossible in this age of fast growing world of electronics and technology.
             As the demand for computers grew, more and more companies stepped in the business to manufacture computers and computer hardware and software. Some of these companies manufacture all computer parts and sell under their own brand, while others manufacture only some of the hardware and few others develop only software.
         </p>
     </div>
 </div>
-
+<br><br><br>
 <form action="" method="post" style="background-color: whitesmoke; width: 60%; padding: 2%; margin: auto; border-radius: 5%;">
     {% csrf_token %}
+    <center><h2>Contact Us</h2></center>
     <div class="form-floating mb-3">
         <input type="text" class="form-control" id="name" name="name" placeholder="">
         <label for="name">Name</label>
@@ -32,6 +33,7 @@
       </div>
       <button type="submit" class="btn btn-primary" style="margin-left: 45%;">Submit</button>
 </form>
+
 
 
 
